@@ -1,0 +1,17 @@
+version: '3'
+services:
+    web:
+        image: nginx:latest
+        environment:
+          - "TZ=Asia/Makassar"
+        ports: 
+            - "80:80"
+        volumes:
+            - ./conf.d:/etc/nginx/conf.d
+            - ./app/OpenSID:/var/www
+        restart: always
+        networks:
+            - frontend
+
+networks:
+    frontend:
