@@ -3,15 +3,33 @@ services:
     web:
         image: nginx:latest
         environment:
-          - "TZ=Asia/Makassar"
+            - TZ=Asia/Makassar
         ports: 
-            - "80:80"
+            - 80:80
         volumes:
             - ./conf.d:/etc/nginx/conf.d
-            - ./app/OpenSID:/var/www
+            - ./app/OpenSID:/var/www/html
         restart: always
+        depends_on:
+            - php
         networks:
             - frontend
 
+    php:
+        build:
+            context: .
+            dockerfile: conf.d/PHP.Dockerfile
+        environment:
+            - TZ=Asia/Makassar
+        volumes:
+            - ./app/OpenSID:/var/www/html
+        expose:
+            - 9000
+        restart: always
+        networks:
+            - frontend
+            - backend
+
 networks:
     frontend:
+    backend:
