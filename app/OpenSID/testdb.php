@@ -2,7 +2,7 @@
   mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
 
     try {
-        $link = mysqli_connect("mariadb", "admin", "rahasia", "sid");
+        $link = mysqli_connect("mariadb", "adminsid", "rahasia", "sid");
     } catch (mysqli_sql_exception $e) { // Gagal terkoneksi, tampilan informasi penyebabnya
         echo "MySQLi Error Code: " . $e->getCode() . "<br />";
         echo "Exception Msg: " . $e->getMessage();
