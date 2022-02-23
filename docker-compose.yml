@@ -12,6 +12,7 @@ services:
         restart: always
         depends_on:
             - php
+            - mariadb
         networks:
             - frontend
 
@@ -26,9 +27,36 @@ services:
         expose:
             - 9000
         restart: always
+        depends_on:
+            - mariadb
         networks:
             - frontend
             - backend
+
+    mariadb:
+        image: lscr.io/linuxserver/mariadb:latest
+        restart: always
+#       PUID=1002 adalah user 'adminsid' dan PGID=33 adalah group 'www-data'
+#       gunakan perintah 'id' untuk memastikannya
+        environment:
+            - TZ=Asia/Makassar
+            - PUID=1002
+            - PGID=33
+            - MYSQL_ROOT_PASSWORD=secret            
+            - MYSQL_DATABASE=sid
+            - MYSQL_USER=adminsid
+            - MYSQL_PASSWORD=rahasia
+        ports:
+            - 3306:3306
+        expose:
+            - 3306
+        volumes:
+            - ./mariadb_data:/config
+        networks:
+            - backend
+
+volumes:
+    mariadb_data:
 
 networks:
     frontend:
