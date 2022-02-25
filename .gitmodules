@@ -1,0 +1,3 @@
+[submodule "app/OpenSID"]
+	path = app/OpenSID
+	url = https://github.com/OpenSID/OpenSID.git

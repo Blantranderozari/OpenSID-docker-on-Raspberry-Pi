@@ -44,10 +44,6 @@ services:
             - TZ=Asia/Makassar
             - PUID=1002
             - PGID=33
-#            - MYSQL_ROOT_PASSWORD=secret            
-#            - MYSQL_DATABASE=sid
-#            - MYSQL_USER=adminsid
-#            - MYSQL_PASSWORD=rahasia
         ports:
             - 3306:3306
         expose:
